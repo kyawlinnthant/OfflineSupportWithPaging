@@ -1,6 +1,8 @@
 package klt.mdy.offlinesupportwithpaging.model
 
 import kotlinx.serialization.Serializable
+import java.util.*
+import kotlin.random.Random
 
 @Serializable
 data class MoviesDTO(
@@ -31,7 +33,7 @@ data class MovieData(
 ) {
     fun toVo(): MovieEntity {
         return MovieEntity(
-            id = id,
+            movieId = id,
             originalTitle = original_title,
             movieTitle = title,
             coverUrl = backdrop_path,

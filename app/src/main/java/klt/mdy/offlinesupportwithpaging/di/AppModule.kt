@@ -66,7 +66,9 @@ object AppModule {
             context,
             MovieDatabase::class.java,
             Constants.DB_NAME
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides

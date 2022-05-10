@@ -7,7 +7,7 @@ import klt.mdy.offlinesupportwithpaging.model.RemoteKeyEntity
 
 @Database(
     entities = [MovieEntity::class, RemoteKeyEntity::class],
-    version = 1
+    version = 4
 )
 abstract class MovieDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao

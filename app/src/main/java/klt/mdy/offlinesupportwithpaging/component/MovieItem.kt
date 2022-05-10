@@ -1,6 +1,7 @@
 package klt.mdy.offlinesupportwithpaging.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -23,26 +24,29 @@ import klt.mdy.offlinesupportwithpaging.model.MovieEntity
 @Composable
 fun MovieItem(
     modifier: Modifier = Modifier,
-    movie: MovieEntity
+    movie: MovieEntity,
+    onItemClick : (Int)->Unit,
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
             .clip(shape = RoundedCornerShape(12.dp))
             .background(color = MaterialTheme.colors.primary.copy(alpha = 0.1f))
-            .padding(all = 12.dp),
+            .padding(all = 12.dp)
+            .clickable {
+                onItemClick(movie.movieId)
+            },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(all = 8.dp),
-            text = movie.movieTitle,
+            text = movie.originalTitle,
             style = MaterialTheme.typography.h4
         )
 
         movie.coverUrl?.let {
-
             AsyncImage(
                 model = Endpoints.IMAGE_URL + it,
                 contentDescription = "image",
@@ -89,7 +93,6 @@ private fun Preview() {
     Surface {
         MovieItem(
             movie = MovieEntity(
-                id = 1,
                 coverUrl = "",
                 posterUrl = "",
                 overview = "This is the overview of the selected movie item. " +
@@ -102,7 +105,8 @@ private fun Preview() {
                 totalVote = 1.2,
                 averageVote = 1.2,
                 language = "en"
-            )
+            ),
+            onItemClick = {}
         )
     }
 }

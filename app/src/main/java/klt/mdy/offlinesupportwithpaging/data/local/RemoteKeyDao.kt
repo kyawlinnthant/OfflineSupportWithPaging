@@ -10,7 +10,7 @@ import klt.mdy.offlinesupportwithpaging.model.RemoteKeyEntity
 @Dao
 interface RemoteKeyDao {
 
-    @Query(value = "SELECT * FROM ${Constants.REMOTE_KEY_TABLE} WHERE id =:id")
+    @Query(value = "SELECT * FROM ${Constants.REMOTE_KEY_TABLE} WHERE movieId =:id")
     suspend fun getRemoteKeys(id: Int): RemoteKeyEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
